@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerList:
-  - {fileID: 5228044547317404157, guid: df6f658aff3227149815959594feeaf9, type: 3}
+  - {fileID: 976525132842064253, guid: 5eac24f28d739614ba1031098996cb5a, type: 3}
   - {fileID: 4943953819802493152, guid: 7abb161e696bb254db3be6230d98d096, type: 3}
   - {fileID: 7243966484523674843, guid: 1ea01022c97e7f143913d0cd0de1626a, type: 3}
   - {fileID: 2328666598217677572, guid: a2547bd84451ba54881244445a3c567e, type: 3}
@@ -8466,16 +8466,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baec0b0a68a652542ae7e164f7b8b434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 9131965342572412182, guid: 936b237aaba779040b102ae455ebe9ad, type: 3}
-  - {fileID: 5168309326286169613, guid: 17839177de46b444cbc0979179648b9d, type: 3}
+  FruitsPrefabs:
   - {fileID: 8409894188644689963, guid: 0bdcc4218ba596b4fafebd602877e283, type: 3}
+  - {fileID: 5168309326286169613, guid: 17839177de46b444cbc0979179648b9d, type: 3}
+  - {fileID: 9131965342572412182, guid: 936b237aaba779040b102ae455ebe9ad, type: 3}
   - {fileID: 1650747765396947376, guid: 32e5d863c3bae1949aba321e30f25266, type: 3}
   collectablesAmountOnScreen: 0
-  terrainObject: {fileID: 378166849}
-  radius: 12
-  colliders: []
-  ScenarioCollider: {fileID: 0}
 --- !u!212 &1202836882
 SpriteRenderer:
   m_ObjectHideFlags: 0
