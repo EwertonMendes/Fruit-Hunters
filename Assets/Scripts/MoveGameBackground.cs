@@ -9,8 +9,11 @@ namespace Assets.Scripts
         private Renderer bgRend;
         void Update()
         {
-            bgRend = GetComponent<MeshRenderer>();
-            bgRend.material.mainTextureOffset += new Vector2(0f, bgSpeed * Time.deltaTime);
+            if (CountdownController.instance.canStartGame())
+            {
+                bgRend = GetComponent<MeshRenderer>();
+                bgRend.material.mainTextureOffset += new Vector2(0f, bgSpeed * Time.deltaTime);
+            }
         }
     }
 }

@@ -145,7 +145,7 @@ public class SelectPlayer : MonoBehaviour
             if (Input.GetButtonDown("Submit"))
             {
                 p1State = "Ready";
-                p1Chars[p1Index].transform.position = p1PositionSet.transform.position;
+                p1Chars[p1Index].transform.position = new Vector3(Mathf.Lerp(p1Chars[p1Index].transform.position.x, p1PositionSet.transform.position.x, 800 * Time.deltaTime), Mathf.Lerp(p1Chars[p1Index].transform.position.y, p1PositionSet.transform.position.y, 800 * Time.deltaTime), p1PositionSet.transform.position.z);
                 var buttonsToUnselect = new List<GameObject>();
                 buttonsToUnselect.AddRange(p1Chars.Where(c => c != p1Chars[p1Index]));
                 DeactivateChars(buttonsToUnselect);

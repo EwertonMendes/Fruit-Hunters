@@ -15,7 +15,8 @@ public class FruitHandler : MonoBehaviour
 
         if (collider2D.gameObject.CompareTag("Player"))
         {
-            animator.SetBool("Collected", true);
+            if(animator)
+                animator.SetBool("Collected", true);
 
             Destroy(this.gameObject, 0.25f);
         }

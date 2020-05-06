@@ -14,7 +14,6 @@ public class PlayerMovementHandler : MonoBehaviour
     private GameObject jumpEffectPrefab;
     private int score = 0;
     private TextMeshProUGUI scoreText;
-
     void Start()
     {
 
@@ -63,7 +62,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
         rigidbody.velocity = new Vector2(movimento * maxSpeed, rigidbody.velocity.y);
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
@@ -86,6 +85,12 @@ public class PlayerMovementHandler : MonoBehaviour
                     canDoubleJump = false;
                 }
             }
+        }
+
+        //Test for small jump (NOT WORKING)
+        if(Input.GetButtonUp("Jump") && rigidbody.velocity.y > 0)
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.y * .5f);
         }
 
         playerState = PlayerStateEnum.Jumping;

@@ -3659,8 +3659,8 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3859,14 +3859,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4113be386061d40ac1506b1411223a, type: 3}
+  m_Script: {fileID: 11500000, guid: 942e81cf9755964409045cfc84a8c8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerList:
   - {fileID: 976525132842064253, guid: 5eac24f28d739614ba1031098996cb5a, type: 3}
-  - {fileID: 4943953819802493152, guid: 7abb161e696bb254db3be6230d98d096, type: 3}
   - {fileID: 7243966484523674843, guid: 1ea01022c97e7f143913d0cd0de1626a, type: 3}
   - {fileID: 2328666598217677572, guid: a2547bd84451ba54881244445a3c567e, type: 3}
+  - {fileID: 4943953819802493152, guid: 7abb161e696bb254db3be6230d98d096, type: 3}
   player1SpawPoint: {fileID: 2069890616}
   player2SpawnPoint: {fileID: 987141810}
   playerLightPrefab: {fileID: 0}
@@ -3874,6 +3874,8 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4293497599
   pauseScreen: {fileID: 939898434}
+  p1Score: {fileID: 1033376237}
+  p2Score: {fileID: 1671135039}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
