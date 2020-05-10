@@ -18,9 +18,12 @@ public class ScrollingBackground : MonoBehaviour
 	void Update()
 	{
 		//gameObject.transform.localScale = new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, gameObject.transform.position.z);
-		if(CountdownController.instance.canStartGame())
+		if(CountdownController.instance != null && CountdownController.instance.CanStartGame())
 		{
 			bgRend.material.mainTextureOffset += new Vector2(bgSpeed * Time.deltaTime, 0f);
-		}
+		} else
+        {
+            bgRend.material.mainTextureOffset += new Vector2(bgSpeed * Time.deltaTime, 0f);
+        }
 	}
 }

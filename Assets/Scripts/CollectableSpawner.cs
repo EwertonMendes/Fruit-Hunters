@@ -18,7 +18,7 @@ public class CollectableSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (CountdownController.instance.canStartGame())
+        if (CountdownController.instance.CanStartGame())
         {
             collectablesAmountOnScreen = GameObject.FindGameObjectsWithTag("Collectable").Length;
 

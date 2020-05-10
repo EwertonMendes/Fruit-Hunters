@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CountdownController.instance.canStartGame())
+        if (CountdownController.instance.CanStartGame())
         {
             currentTime -= 1 * Time.deltaTime;
             timerText.text = TimeSpan.FromSeconds(currentTime).ToString("mm\\:ss");

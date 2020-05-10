@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CountdownController.instance.canStartGame() && hasGameStarted == false)
+        if(CountdownController.instance.CanStartGame() && hasGameStarted == false)
         {
             BeginGame();
             hasGameStarted = true;

@@ -43,7 +43,7 @@ public class CountdownController : MonoBehaviour
         countdownText.gameObject.SetActive(false);
     }
 
-    public bool canStartGame()
+    public bool CanStartGame()
     {
         return countdownTime <= 0 ? true : false;
     }

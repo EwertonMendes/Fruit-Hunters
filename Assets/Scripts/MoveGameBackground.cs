@@ -9,7 +9,7 @@ namespace Assets.Scripts
         private Renderer bgRend;
         void Update()
         {
-            if (CountdownController.instance.canStartGame())
+            if (CountdownController.instance.CanStartGame())
             {
                 bgRend = GetComponent<MeshRenderer>();
                 bgRend.material.mainTextureOffset += new Vector2(0f, bgSpeed * Time.deltaTime);
