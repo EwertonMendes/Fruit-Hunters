@@ -11,6 +11,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public PlayerStateEnum playerState;
     private bool canDoubleJump;
+    private bool isSliding;
     private GameObject jumpEffectPrefab;
     private int score = 0;
     private TextMeshProUGUI scoreText;
@@ -66,6 +67,17 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             Jump();
         }
+
+        if(isSliding && isGrounded == false)
+        {
+            Slide();
+        }
+    }
+
+    void Slide()
+    {
+        rigidbody.velocity = Vector2.down * 0.5f;
+        Debug.Log("Deslizou");
     }
 
     void Jump()
@@ -103,6 +115,11 @@ public class PlayerMovementHandler : MonoBehaviour
             isGrounded = true;
             canDoubleJump = true;
         }
+
+        if (collision2D.gameObject.CompareTag("Walls&Ceil") && isGrounded == false)
+        {
+            isSliding = true;
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision2D)
@@ -111,6 +128,11 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             isGrounded = false;
             canDoubleJump = true;
+        }
+
+        if (collision2D.gameObject.CompareTag("Walls&Ceil") && isGrounded)
+        {
+            isSliding = false;
         }
     }
 
