@@ -1,0 +1,66 @@
+name: Build Fruit Hunters for Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/windows-build
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+      - '.github/workflows/build-windows.yml'
+
+jobs:
+  build-windows:
+    name: Windows 64-bit build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ runner.os }}-2019.3.13f1-StandaloneWindows64-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ runner.os }}-2019.3.13f1-StandaloneWindows64-
+            Library-${{ runner.os }}-2019.3.13f1-
+
+      - name: Verify Unity license secrets
+        shell: bash
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        run: |
+          if [ -z "$UNITY_LICENSE" ]; then
+            echo "UNITY_LICENSE is not configured for this repository."
+            echo "Add the Unity license as the repository secret UNITY_LICENSE, then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Build Fruit Hunters
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 2019.3.13f1
+          targetPlatform: StandaloneWindows64
+          buildName: Fruit Hunters
+          buildsPath: build
+          allowDirtyBuild: true
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fruit-Hunters-Windows-x64
+          path: build/StandaloneWindows64
+          if-no-files-found: error
+          retention-days: 7
