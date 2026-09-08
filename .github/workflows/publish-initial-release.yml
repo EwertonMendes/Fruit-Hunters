@@ -1,0 +1,60 @@
+name: Publish initial Windows release
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/publish-initial-release.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download successful Windows build artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p dist
+          gh run download 34287286614 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name Fruit-Hunters-Windows-x64 \
+            --dir dist
+
+      - name: Package Windows build
+        run: |
+          cd dist
+          zip -r ../Fruit-Hunters-Windows-x64.zip .
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.0.0 Fruit-Hunters-Windows-x64.zip \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Fruit Hunters - Windows x64" \
+            --notes "Build jogável do Fruit Hunters para Windows 64-bit, compilada com Unity 2019.3.13f1. Extraia o ZIP inteiro e execute 'Fruit Hunters.exe'."
+
+      - name: Remove temporary build branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method DELETE \
+            "repos/$GITHUB_REPOSITORY/git/refs/heads/chatgpt/windows-build" || true
+
+      - name: Remove this one-time workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          FILE='.github/workflows/publish-initial-release.yml'
+          SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/$FILE?ref=master" --jq '.sha')
+          gh api --method DELETE \
+            "repos/$GITHUB_REPOSITORY/contents/$FILE" \
+            -f message='chore: remove one-time release publisher' \
+            -f sha="$SHA" \
+            -f branch='master'
