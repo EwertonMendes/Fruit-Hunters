@@ -1,5 +1,6 @@
 name: Build Fruit Hunters for Windows
 
+# Triggered after configuring the Unity Personal license secret.
 on:
   workflow_dispatch:
   push:
